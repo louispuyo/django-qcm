@@ -1,0 +1,9 @@
+<h1>Questions</h1>
+<ul>
+{% for questions in question_list %}
+    <li><a href = "{% url 'qcm:detail' questions.id %}"> {{ questions.enonce }}</a>
+         </li>
+{% empty %}
+    <li>Pas de questions pour l'instant.</li>
+{% endfor %}
+</ul>

@@ -1,0 +1,35 @@
+{% load static %}
+
+<link rel="stylesheet" href={% static "qcm/css/bootstrap.min.css" %}>
+
+<div class="card" >
+     <div class="card-header">
+         <a class="badge badge-info"
+           style="float: right;"
+           href="{% url 'qcm:detail_questionnaire' questionnaire_en_cours %}">
+            Retour questionnaire</a>
+        {{ question.enonce }}
+     </div>
+
+<ul class="list-group">
+    {% for reponse in reponses %}
+        {% if reponse in rouge %}
+            <li class="list-group-item list-group-item-danger"> {{ reponse.reponse }} </li>
+        {% endif %}
+        {% if reponse in vert %}
+            <li class="list-group-item list-group-item-success"> {{ reponse.reponse }} </li>
+        {% endif %}
+        {% if reponse in neutre %}
+            <li  class="list-group-item"> {{ reponse.reponse }} </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src={% static "qcm/js/jquery-3.4.1.min.js" %}></script>
+<script src={% static "qcm/js/popper.min.js" %}></script>
+<script src={% static "qcm/js/bootstrap.bundle.min.js" %}></script>

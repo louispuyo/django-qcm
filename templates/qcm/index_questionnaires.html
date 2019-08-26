@@ -1,0 +1,9 @@
+<h1>Liste des questionnaires disponibles</h1>
+<ul>
+{% for questionnaire in questionnaire_list %}
+    <li><a href = "{% url 'qcm:detail_questionnaire' questionnaire.id %}"> {{ questionnaire.titre }}</a>
+         </li>
+{% empty %}
+    <li>Pas de questionnaires pour l'instant.</li>
+{% endfor %}
+</ul>

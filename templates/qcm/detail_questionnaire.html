@@ -1,0 +1,10 @@
+<h1>Questionnaire : {{ questionnaire.titre }}</h1>
+
+{% if questions %}
+    {% for question in questions %}
+        <a  href="{% url 'qcm:detail' question.id %}"> {{ question.enonce }}</a> <br>
+    {% endfor %}
+
+{% endif %}
+
+

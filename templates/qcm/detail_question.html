@@ -1,0 +1,48 @@
+{% load static %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href={% static "qcm/css/bootstrap.min.css" %}>
+
+
+<div class="card">
+    <div class="card-header">
+        <a class="badge badge-info"
+           style="float: right;"
+           href="{% url 'qcm:detail_questionnaire' questionnaire_en_cours %}">
+            Retour questionnaire</a>
+        {{ question.enonce | safe | linebreaks }}
+    </div>
+
+    {% if question.image %}
+
+        <img class="img-fluid" src={{ question.image.url }} >
+
+    {% endif %}
+
+    <form action="/qcm/detail/{{ question.pk }}/" method="post">
+        {% csrf_token %}
+        <ul class="list-group">
+            {% for reponse in reponses %}
+                <li class="list-group-item">
+                    <div class="custom-control custom-checkbox custom-control-inline boite-checkbox">
+                        <input type="checkbox" name="{{ reponse.pk }}" id="{{ reponse.pk }}"
+                               class="custom-control-input">
+                        <label for="{{ reponse.pk }}" class="custom-control-label "> {{ reponse.reponse }}</label>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <input type="submit" value="Valider" class="btn btn-primary btn-lg btn-block">
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src={% static "qcm/js/jquery-3.4.1.min.js" %}></script>
+<script src={% static "qcm/js/popper.min.js" %}></script>
+<script src={% static "qcm/js/bootstrap.bundle.min.js" %}></script>
+
