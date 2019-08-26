@@ -50,10 +50,8 @@ def detail(request, question_id):
         for elem in list:
             if bool(elem):
                 rouge = rouge | elem
-        neutre = reponses.difference(rouge, vert)
         context['vert'] = vert
         context['rouge'] = rouge
-        context['neutre'] = neutre
         context['questionnaire_en_cours'] = request.session['questionnaire_en_cours']
         return render(request, 'qcm/reponse.html', context)
     else:

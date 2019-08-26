@@ -15,11 +15,9 @@
     {% for reponse in reponses %}
         {% if reponse in rouge %}
             <li class="list-group-item list-group-item-danger"> {{ reponse.reponse }} </li>
-        {% endif %}
-        {% if reponse in vert %}
+        {% elif reponse in vert %}
             <li class="list-group-item list-group-item-success"> {{ reponse.reponse }} </li>
-        {% endif %}
-        {% if reponse in neutre %}
+        {% else %}
             <li  class="list-group-item"> {{ reponse.reponse }} </li>
         {% endif %}
     {% endfor %}
